@@ -1,19 +1,25 @@
 package models;
 
 public class User {
-	private Integer id;
+	private Integer user_id;
 	private String username;
 	private String email;
 	private String password;
-	public Integer getId() {
-		return id;
-	}
 
-	public User(Integer id, String username, String email, String password) {
-		this.id = id;
+	public User(Integer user_id, String username, String email, String password) {
+		super();
+		this.user_id = user_id;
 		this.username = username;
 		this.email = email;
 		this.password = password;
+	}
+
+	public Integer getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(Integer user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getUsername() {
@@ -40,12 +46,4 @@ public class User {
 		this.password = password;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	
-	
-	
-	
 }
