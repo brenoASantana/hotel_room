@@ -1,25 +1,25 @@
 package models;
 
 public class User {
-	private Integer user_id;
+	private Integer userId;
 	private String username;
 	private String email;
 	private String password;
 
-	public User(Integer user_id, String username, String email, String password) {
+	public User(Integer userId, String username, String email, String password) {
 		super();
-		this.user_id = user_id;
+		this.userId = userId;
 		this.username = username;
 		this.email = email;
 		this.password = password;
 	}
 
-	public Integer getUser_id() {
-		return user_id;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {

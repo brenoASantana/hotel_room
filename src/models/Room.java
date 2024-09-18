@@ -2,25 +2,25 @@ package models;
 
 public class Room {
 
-	private Integer room_id;
+	private Integer roomId;
 	private Integer num;
 	private boolean isFull;
-	private Integer typeRoom_id;
+	private Integer typeRoomId;
 
-	public Room(Integer room_id, Integer num, boolean isFull, Integer typeRoom_id) {
+	public Room(Integer roomId, Integer num, boolean isFull, Integer typeRoomId) {
 		super();
-		this.room_id = room_id;
+		this.roomId = roomId;
 		this.num = num;
 		this.isFull = isFull;
-		this.typeRoom_id = typeRoom_id;
+		this.typeRoomId = typeRoomId;
 	}
 
-	public Integer getRoom_id() {
-		return room_id;
+	public Integer getRoomId() {
+		return roomId;
 	}
 
-	public void setRoom_id(Integer room_id) {
-		this.room_id = room_id;
+	public void setRoomId(Integer roomId) {
+		this.roomId = roomId;
 	}
 
 	public Integer getNum() {
@@ -39,12 +39,12 @@ public class Room {
 		this.isFull = isFull;
 	}
 
-	public Integer getTypeRoom_id() {
-		return typeRoom_id;
+	public Integer getTypeRoomId() {
+		return typeRoomId;
 	}
 
-	public void setTypeRoom_id(Integer typeRoom_id) {
-		this.typeRoom_id = typeRoom_id;
+	public void setTypeRoomId(Integer typeRoomId) {
+		this.typeRoomId = typeRoomId;
 	}
 
 }

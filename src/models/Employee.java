@@ -3,32 +3,32 @@ package models;
 import java.sql.Date;
 
 public class Employee {
-	private Integer employee_id;
+	private Integer employeeId;
 	private String name;
 	private String phone;
 	private Date birthDay;
 	private String cpf;
 	private Integer position;
-	private Integer user_id;
+	private Integer userId;
 
-	public Employee(Integer employee_id, String name, String phone, Date birthDay, String cpf, Integer position,
-			Integer user_id) {
+	public Employee(Integer employeeId, String name, String phone, Date birthDay, String cpf, Integer position,
+			Integer userId) {
 		super();
-		this.employee_id = employee_id;
+		this.employeeId = employeeId;
 		this.name = name;
 		this.phone = phone;
 		this.birthDay = birthDay;
 		this.cpf = cpf;
 		this.position = position;
-		this.user_id = user_id;
+		this.userId = userId;
 	}
 
-	public Integer getEmployee_id() {
-		return employee_id;
+	public Integer getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setEmployee_id(Integer employee_id) {
-		this.employee_id = employee_id;
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	public String getName() {
@@ -71,12 +71,12 @@ public class Employee {
 		this.position = position;
 	}
 
-	public Integer getUser_id() {
-		return user_id;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 }
