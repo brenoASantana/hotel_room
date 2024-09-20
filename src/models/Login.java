@@ -61,27 +61,31 @@ public class Login extends JFrame {
                 String username = jFormattedTextUsername.getText();
                 String password = jFormattedTextPassword.getText();
 
-                // Verifica o login (ajustar conforme necessário)
+                // Verifica o login
+                // TODO: Criar verificação de existencia do usuário
                 if (true) {
-                    openNextWindow();
+                    switchToStayScreen();
                 } else {
-                    System.out.println("Invalid username or password");
+                    JOptionPane.showMessageDialog(null, "Invalid username or password");
                 }
             }
         });
 
         // Configurações da janela
-        setSize(400, 200); // Defina o tamanho da janela
+        setSize(400, 300); // Defina o tamanho da janela
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Centraliza a janela na tela
         setVisible(true);
     }
 
-    // Método para abrir a próxima janela
-    private void openNextWindow() {
-        JFrame nextWindow = new JFrame("Next Window");
-        nextWindow.setSize(300, 200);
-        nextWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        nextWindow.setLocationRelativeTo(null); 
+
+    // Método para transição da tela de login para a tela de Stay
+    private void switchToStayScreen() {
+        getContentPane().removeAll(); // Remove todos os componentes da tela atual
+        Stay stay = new Stay(this);   // Passa o frame atual para o Stay
+        stay.windowStay();            // Exibe a tela Stay
+        revalidate();                 // Revalida ao layout
+        repaint();                    // Redesenha a janela
+
     }
 }
