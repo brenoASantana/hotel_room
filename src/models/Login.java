@@ -82,7 +82,6 @@ public class Login extends JFrame {
         JFrame nextWindow = new JFrame("Next Window");
         nextWindow.setSize(300, 200);
         nextWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        nextWindow.setLocationRelativeTo(null); // Centraliza a nova janela também
-        nextWindow.setVisible(true);
+        nextWindow.setLocationRelativeTo(null); 
     }
 }
