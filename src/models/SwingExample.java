@@ -16,7 +16,7 @@ public class SwingExample {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Connection conn = Conexao.connect();
+                Connection conn = ConnectionDB.connect();
                 if (conn != null) {
                     try {
                         Statement stmt = conn.createStatement();

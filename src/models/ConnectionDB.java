@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Conexao {
+public class ConnectionDB {
     public static Connection connect() {
-        String url = "jdbc:postgresql://localhost:5432/seu_banco_de_dados";
-        String user = "seu_usuario";
-        String password = "sua_senha";
+        String url = "jdbc:postgresql://localhost:5432/hotel_room";
+        String user = "postgres";
+        String password = "postgres";
         
         Connection conn = null;
         try {

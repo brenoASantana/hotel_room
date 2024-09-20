@@ -3,6 +3,10 @@ package models;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.*;
 
 public class Login extends JFrame {
@@ -10,8 +14,8 @@ public class Login extends JFrame {
 
     private JLabel labelUsername;
     private JLabel labelPassword;
-    private JFormattedTextField jFormattedTextUsername;
-    private JFormattedTextField jFormattedTextPassword;
+    private JTextField textUsername;
+    private JPasswordField textPassword;
     private JButton btnLogin;
 
     public static void main(String[] args) {
@@ -28,10 +32,10 @@ public class Login extends JFrame {
         // Define os rótulos e campos de texto
         labelUsername = new JLabel("Username: ");
         labelPassword = new JLabel("Password: ");
-        jFormattedTextUsername = new JFormattedTextField();
-        jFormattedTextUsername.setPreferredSize(new Dimension(150, 25));
-        jFormattedTextPassword = new JFormattedTextField();
-        jFormattedTextPassword.setPreferredSize(new Dimension(150, 25));
+        textUsername = new JTextField();
+        textUsername.setPreferredSize(new Dimension(150, 25));
+        textPassword = new JPasswordField();
+        textPassword.setPreferredSize(new Dimension(150, 25));
         btnLogin = new JButton("Login");
 
         // Adiciona os componentes na janela com posicionamento centralizado
@@ -40,14 +44,14 @@ public class Login extends JFrame {
         window.add(labelUsername, gbc);
 
         gbc.gridx = 1;
-        window.add(jFormattedTextUsername, gbc);
+        window.add(textUsername, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
         window.add(labelPassword, gbc);
 
         gbc.gridx = 1;
-        window.add(jFormattedTextPassword, gbc);
+        window.add(textPassword, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 2;
@@ -58,15 +62,43 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Obtém os valores dos campos de texto
-                String username = jFormattedTextUsername.getText();
-                String password = jFormattedTextPassword.getText();
+                String username = textUsername.getText();
+                String password = new String(textPassword.getPassword());
 
                 // Verifica o login
-                // TODO: Criar verificação de existencia do usuário
-                if (true) {
-                    switchToStayScreen();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Invalid username or password");
+                Connection conn = ConnectionDB.connect();
+                if (conn != null) {
+                    PreparedStatement pstmt = null;
+                    ResultSet rs = null;
+                    try {
+                        String query = "SELECT username, password FROM public.\"HRuser\" WHERE username = ?";
+                        pstmt = conn.prepareStatement(query);
+                        pstmt.setString(1, username);
+                        rs = pstmt.executeQuery();
+
+                        if (rs.next()) {
+                            String dbUsername = rs.getString("username");
+                            String dbPassword = rs.getString("password");
+
+                            if (dbUsername.equals(username) && dbPassword.equals(password)) {
+                                switchToStayScreen();  // Troca a tela se o login for válido
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Invalid username or password");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Invalid username or password");
+                        }
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, "Erro ao executar consulta: " + ex.getMessage());
+                    } finally {
+                        try {
+                            if (rs != null) rs.close();
+                            if (pstmt != null) pstmt.close();
+                            if (conn != null) conn.close();
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
                 }
             }
         });
@@ -78,7 +110,6 @@ public class Login extends JFrame {
         setVisible(true);
     }
 
-
     // Método para transição da tela de login para a tela de Stay
     private void switchToStayScreen() {
         getContentPane().removeAll(); // Remove todos os componentes da tela atual
@@ -86,6 +117,5 @@ public class Login extends JFrame {
         stay.windowStay();            // Exibe a tela Stay
         revalidate();                 // Revalida ao layout
         repaint();                    // Redesenha a janela
-
     }
 }
